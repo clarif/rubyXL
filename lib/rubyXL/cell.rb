@@ -447,7 +447,12 @@ module RubyXL
     end
 
     def xf_id()
-      @workbook.get_style_attributes(@workbook.get_style(@style_index.to_s))
+      _xf_id = {:numFmtId=>0, :fontId=>0, :fillId=>0, :borderId=>0, :xfId=>0, :applyAlignment=>"1"}
+      begin
+        _xf_id = @workbook.get_style_attributes(@workbook.get_style(@style_index.to_s))
+      rescue
+      end
+      _xf_id
     end
 
     def border_id()
